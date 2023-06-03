@@ -9,10 +9,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.get('/', (req, res) => {
-    res.send("Hello Express!");
-});
-app.get('/gettask',async(req,res)=>{
+// app.get('/', (req, res) => {
+//     res.send("Hello Express!");
+// });
+app.get('/',async(req,res)=>{
   try{
 
 
