@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
 });
 app.get('/gettask',async(req,res)=>{
   try{
+
+
     const myLists = await todoSchema.find().sort({editedDate:-1});
     // get total documents in the Posts collection  
     const count = await todoSchema.countDocuments();
@@ -29,9 +31,9 @@ app.post('/addtask', async(req, res) => {
     })
     try{
         // datbase add document
-        const result = await taskModel.save()
+        const resultminor = await taskModel.save()
         // frontend message
-        res.status(201).send({message : "success",result})
+        res.status(201).send({message : "success",resultminor})
     }catch(err){
         res.send(err)
     } 
