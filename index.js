@@ -14,8 +14,6 @@ app.use(express.urlencoded({extended:true}))
 // });
 app.get('/',async(req,res)=>{
   try{
-
-
     const myLists = await todoSchema.find().sort({editedDate:-1});
     // get total documents in the Posts collection  
     const count = await todoSchema.countDocuments();
@@ -24,7 +22,7 @@ app.get('/',async(req,res)=>{
     res.status(500).send(err);
 }
 })
-app.post('/addtask', async(req, res) => {
+app.post('/', async(req, res) => {
     const {task} = req.body
     const taskModel = new todoSchema({
         task:task,
@@ -38,7 +36,7 @@ app.post('/addtask', async(req, res) => {
         res.send(err)
     } 
 });
-app.put('/edittask/:updateTaskId',async(req,res)=>{
+app.put('/:updateTaskId',async(req,res)=>{
   const userid = req.params.updateTaskId;
   const {task} = req.body;
   try{
@@ -51,7 +49,7 @@ app.put('/edittask/:updateTaskId',async(req,res)=>{
       res.status(404).send(err)
   } 
 })
-app.delete('/deletetask/:userid',async(req,res)=>{
+app.delete('/:userid',async(req,res)=>{
   const userid = req.params.userid;
     try{
       // database - first datbase
