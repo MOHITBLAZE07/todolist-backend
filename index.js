@@ -36,11 +36,10 @@ app.post('/', async(req, res) => {
         res.send(err)
     } 
 });
-app.put('/:updateTaskId',async(req,res)=>{
-  const userid = req.params.updateTaskId;
-  const {task} = req.body;
+app.put('/',async(req,res)=>{
+  const {task,updateTaskId} = req.body;
   try{
-    await todoSchema.findByIdAndUpdate({_id:userid},{
+    await todoSchema.findByIdAndUpdate({_id:updateTaskId},{
         task: task,
         editedDate:Date.now()
     });
@@ -49,8 +48,8 @@ app.put('/:updateTaskId',async(req,res)=>{
       res.status(404).send(err)
   } 
 })
-app.delete('/:userid',async(req,res)=>{
-  const userid = req.params.userid;
+app.delete('/',async(req,res)=>{
+  const {userid} = req.body;
     try{
       // database - first datbase
       const result = await todoSchema.findByIdAndDelete(userid);
